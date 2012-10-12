@@ -1,0 +1,80 @@
+<html>
+   <head>
+      <meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+      <link rel="stylesheet" href='stylemain.css' type='text/css'>
+         <link rel="stylesheet" href='colors.css' type='text/css'>
+            <script language="javascript" src="util.js"></script>
+            <script language="javascript">
+<!-- hide
+var bonding = '<%ejGet(dslBonding)%>';
+
+function hideDslBondingMode(hide) {
+   var status = 'visible';
+
+   if ( hide == 1 )
+      status = 'hidden';
+   if (document.getElementById)  // DOM3 = IE5, NS6
+      document.getElementById('dslBondingInfo').style.visibility = status;
+   else {
+      if (document.layers == false) // IE4
+         document.all.dslBondingInfo.style.visibility = status;
+   }
+}
+
+function dslBondingClick(cb) {
+   if (cb.checked == true)
+      hideDslBondingMode(0)
+   else
+      hideDslBondingMode(1);
+}
+
+function frmLoad() {
+   with ( document.forms[0] ) {
+      if ( bonding == '1' ) {
+        chkDslBonding.checked = true;
+        hideDslBondingMode(0);
+      } else {
+        chkDslBonding.checked = false;
+        hideDslBondingMode(1);
+      }
+   }
+}
+
+function btnApplySave() {
+   var loc = 'dslbondingcfg.cgi?';
+
+   with ( document.forms[0] ) {
+     if ( chkDslBonding.checked == true )
+        loc += 'dslBonding=1';
+     else
+        loc += 'dslBonding=0';
+   }
+   loc += '&sessionKey=<%ejGetOther(sessionKey)%>';
+   var code = 'location="' + loc + '"';
+   eval(code);
+}
+
+
+
+// done hiding -->
+</script>
+   </head>
+   <body onLoad='frmLoad()'>
+      <blockquote>
+         <form>
+            <P>
+               <b>DSL Bonding Configuration</b><br><br>
+               Any Changes to DSL Bonding Config will require a reboot.<br><br>
+            </P>
+            <table border="0" cellpadding="0" cellspacing="0">
+               <tr>
+                  <td><input type='checkbox' name='chkDslBonding' onClick='dslBondingClick(this)'>&nbsp;&nbsp;Enable DSL Bonding</td>
+               </tr>
+            </table>
+            <center>
+               <input type='button' onClick='btnApplySave()' value='Save/Reboot'>
+            </center>
+         </form>
+      </blockquote>
+   </body>
+</html>
